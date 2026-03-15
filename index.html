@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YUGEN 茶室 紅葉 — Receipt</title>
+  <link rel="stylesheet" href="tufte.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --matcha:    #4e7048;
+      --matcha-d:  #2e4a29;
+      --matcha-l:  #c8ddc4;
+      --ink:       #1a1a18;
+      --muted:     #7a7a72;
+      --paper:     #faf7f0;
+      --dash:      #c0bab0;
+      --bg:        #c084ac;
+    }
+
+    html { margin: 0; padding: 0; background: var(--bg); }
+    body {
+      margin: 0; padding: 0;
+      width: 100%; max-width: 100%;
+      background: var(--bg);
+      background-image:
+      radial-gradient(ellipse at 18% 0%,  rgba(78,112,72,.2)  0%, transparent 52%),
+      radial-gradient(ellipse at 82% 95%, rgba(46,74,41,.15)  0%, transparent 48%),
+      repeating-linear-gradient(45deg,
+      rgba(255,255,255,.013) 0, rgba(255,255,255,.013) 1px,
+      transparent 1px, transparent 14px);
+      min-height: 100vh;
+      padding: 3.5rem 1rem 6rem;
+      box-sizing: border-box;
+      font-family: "et-book", Palatino, "Palatino Linotype", Georgia, serif;
+    }
+
+    article {
+      width: 360px !important;
+      max-width: 96vw !important;
+      padding: 0 !important;
+      margin: 0 auto !important;
+      background: var(--paper);
+      background-image:
+      repeating-linear-gradient(
+      180deg,
+      transparent 0px, transparent 22px,
+      rgba(0,0,0,.055) 22px, rgba(0,0,0,.055) 23px
+        );
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,.14),
+        0 6px 18px  rgba(0,0,0,.3),
+        0 22px 60px rgba(0,0,0,.55),
+        0 44px 90px rgba(0,0,0,.22);
+      position: relative;
+    }
+    
+    article section,
+    article header,
+    article footer,
+    article p {
+      width: 100%   !important;
+      max-width: 100% !important;
+      padding-left: 0  !important;
+      padding-right: 0 !important;
+      margin-left: 0   !important;
+      margin-right: 0  !important;
+    }
+
+    .tear { display: block; width: 100%; line-height: 0; }
+    .tear svg { display: block; width: 100%; }
+    .tear.bottom svg { transform: rotate(180deg); }
+
+    .r-body { padding: 4px 26px 18px; }
+
+    
+    .store-head {
+      text-align: center;
+      padding: 16px 0 12px;
+      border-bottom: 1px dashed var(--dash);
+      margin-bottom: 12px;
+    }
+    .store-head h1 {
+      font-size: 1.1rem   !important;
+      letter-spacing: .3em !important;
+      text-transform: uppercase;
+      margin: 0 0 2px !important;
+      line-height: 1.15 !important;
+      color: var(--ink);
+      font-weight: bold;
+    }
+    .jp-title {
+      font-family: "Noto Serif JP", serif;
+      font-size: .9rem;
+      font-weight: 300;
+      color: var(--matcha);
+      letter-spacing: .24em;
+      display: block;
+      margin-bottom: 7px;
+    }
+    .store-addr {
+      font-family: "Inconsolata", monospace;
+      font-size: .65rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0 !important;
+    }
+    .r-meta {
+      font-family: "Inconsolata", monospace;
+      font-size: .7rem;
+      color: var(--muted);
+      line-height: 1.8;
+      border-bottom: 1px dashed var(--dash);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .r-meta .row { display: flex; justify-content: space-between; }
+    .r-meta .v   { color: var(--ink); font-weight: 600; }
+
+    
+    .sec-lbl {
+      font-family: "Inconsolata", monospace;
+      font-size: .6rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      display: block;
+      margin: 0 0 8px !important;
+    }
+
+  
+    .items-tbl {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: "Inconsolata", monospace;
+      font-size: .75rem;
+      margin: 0;
+    }
+
+    .items-tbl thead th {
+      font-weight: 400;
+      color: var(--muted);
+      border-bottom: 1px solid #d4cec4;
+      padding: 0 0 5px;
+      text-align: left;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    
+    .items-tbl thead th:nth-child(2) { text-align: center; }
+    .items-tbl thead th:last-child    { text-align: right; }
+    .items-tbl tbody td {
+      padding: 5px 0 1px;
+      vertical-align: top;
+      color: var(--ink);
+      border: none;
+    }
+    .items-tbl tbody td:nth-child(2) { text-align: center; color: var(--muted); }
+    .items-tbl tbody td:last-child    { text-align: right; font-weight: 600; }
+    .i-jp {
+      font-family: "Noto Serif JP", serif;
+      font-size: .63rem;
+      color: var(--muted);
+      display: block;
+      line-height: 1.65;
+      padding-bottom: 3px;
+    }
+
+    
+    .perf { border: none; border-top: 1px dashed var(--dash); margin: 11px 0; }
+    .solid { border: none; border-top: 1px solid #c8c2b6; margin: 9px 0; }
+
+    
+    .totals { font-family: "Inconsolata", monospace; font-size: .76rem; }
+    .tr {
+      display: flex;
+      justify-content: space-between;
+      padding: 2.5px 0;
+      color: var(--muted);
+    }
+    .tr .lbl {
+      font-family: "et-book", Palatino, Georgia, serif;
+      font-style: italic;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .tr .jp-sm {
+      font-family: "Noto Serif JP", serif;
+      font-size: .6em;
+      margin-left: 3px;
+      color: var(--muted);
+    }
+    .tr#tip-row       { display: none; }
+    .tr.grand         { color: var(--ink); font-weight: 700; font-size: 1.02rem;
+                        border-top: 1.5px solid var(--ink);
+                        padding-top: 7px; margin-top: 3px; }
+    .tr.grand .lbl    { font-style: normal; font-size: 1rem; color: var(--ink); }
+
+  
+    .tip-wrap  { margin: 10px 0 8px; }
+    .tip-lbl   { font-family: "Inconsolata", monospace; font-size: .58rem;
+                 letter-spacing: .22em; text-transform: uppercase; color: var(--muted);
+                 text-align: center; display: block; margin-bottom: 6px; }
+    .tip-btns  { display: flex; gap: 5px; justify-content: center; }
+    .tip-btn {
+      font-family: "Inconsolata", monospace;
+      font-size: .68rem;
+      border: 1px solid #c0bab0;
+      background: transparent;
+      color: var(--muted);
+      padding: 3px 11px;
+      cursor: pointer;
+      transition: background .12s, color .12s, border-color .12s;
+    }
+    .tip-btn:hover  { border-color: var(--matcha); color: var(--matcha); }
+    .tip-btn.active { background: var(--matcha); color: #fff; border-color: var(--matcha); }
+
+    .pay-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: "Inconsolata", monospace; font-size: .7rem; margin: 7px 0;
+    }
+    .pay-row label { color: var(--muted); }
+    .pay-row select {
+      font-family: "Inconsolata", monospace; font-size: .7rem;
+      border: none; border-bottom: 1px solid #c0bab0;
+      background: transparent; color: var(--ink); outline: none; cursor: pointer;
+      padding: 1px 0; max-width: 155px;
+    }
+
+
+    .hanko-row { display: flex; justify-content: center; margin: 12px 0 3px; }
+    .hanko {
+      display: inline-flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      width: 56px; height: 56px;
+      border: 2px solid var(--matcha); border-radius: 2px;
+      color: var(--matcha);
+      font-family: "Noto Serif JP", serif;
+      font-size: 9px; line-height: 1.55; text-align: center;
+      opacity: 0;
+    }
+    .hanko small { font-size: 7px; letter-spacing: .15em; font-family: "Inconsolata", monospace; }
+    .hanko.stamped { animation: stamp .5s cubic-bezier(.36,.07,.19,.97) forwards; }
+    @keyframes stamp {
+      0%   { transform: scale(1.9) rotate(-18deg); opacity: 0; }
+      55%  { transform: scale(.88) rotate(6deg);   opacity: 1; }
+      78%  { transform: scale(1.07) rotate(-1deg); opacity: 1; }
+      100% { transform: scale(1)   rotate(0);      opacity: 1; }
+    }
+
+    
+    .thanks { text-align: center; padding: 10px 0 5px; }
+    .t-jp { font-family: "Noto Serif JP", serif; font-size: 1.05rem; font-weight: 300;
+            color: var(--ink); letter-spacing: .1em; display: block; margin-bottom: 4px; }
+    .t-en { font-family: "et-book", Palatino, Georgia, serif; font-style: italic;
+            font-size: .78rem; color: var(--muted); display: block; margin-bottom: 2px; }
+    .t-sub { font-family: "Noto Serif JP", serif; font-size: .72rem; color: var(--matcha); }
+
+    /* barcode */
+    .bc-wrap { text-align: center; padding: 9px 0 3px; }
+    .bc      { display: inline-flex; align-items: flex-end; height: 32px; }
+    .bc-lbl  { display: block; font-family: "Inconsolata", monospace;
+               font-size: .58rem; color: #c0bab0; letter-spacing: .16em; margin-top: 4px; }
+
+    /* button */
+    .btn-row {
+      display: flex; gap: 10px; justify-content: center; margin-top: 26px;
+    }
+    .act-btn {
+      font-family: "Inconsolata", monospace; font-size: .72rem;
+      border: 1px solid rgba(255,255,255,.22); background: transparent;
+      color: rgba(255,255,255,.55); padding: 6px 18px; cursor: pointer;
+      letter-spacing: .06em;    }
+      .act-btn:hover { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.5); }
+
+    /* detail */
+    .det-panel {
+      width: 360px; max-width: 96vw; margin: 10px auto 0;
+      background: var(--paper); box-shadow: 0 4px 24px rgba(0,0,0,.42);
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height .5s ease, opacity .38s ease;
+    }
+    .det-panel.open { max-height: 1000px; opacity: 1; }
+    .det-inner      { padding: 18px 26px; }
+    .det-inner h3   { font-family: "Inconsolata", monospace; font-size: .6rem;
+                      letter-spacing: .26em; text-transform: uppercase; color: var(--muted);
+                      text-align: center; margin: 0 0 12px !important; font-weight: 400; }
+    .di { border-bottom: 1px solid #e4e0d8; padding: 7px 0; }
+    .di:last-child { border-bottom: none; }
+    .di-name  { font-family: "et-book", Palatino, Georgia, serif; font-weight: bold; color: var(--ink); font-size: .88rem; }
+    .di-jp    { font-family: "Noto Serif JP", serif; font-size: .72em; color: var(--muted); margin-left: 5px; }
+    .di-desc  { font-family: "et-book", Palatino, Georgia, serif; font-style: italic;
+                color: #666; font-size: .8rem; margin-top: 3px; line-height: 1.5; }
+    .di-price { font-family: "Inconsolata", monospace; color: var(--matcha-d);
+                font-size: .75rem; margin-top: 4px; }
+    .di-tags  { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 5px; }
+    .tag { font-family: "Inconsolata", monospace; font-size: .58rem;
+           background: var(--matcha-l); color: var(--matcha-d);
+           padding: 1px 7px; border-radius: 1px; }
+
+    
+    .reveal {
+      opacity: 0; transform: translateY(5px);
+      transition: opacity .42s ease, transform .42s ease;
+    }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    
+    @media print {
+      html, body { background: white !important; padding: 0 !important; }
+      article     { box-shadow: none !important; margin: 0 !important; width: 100% !important; }
+      .btn-row, .det-panel, .tip-wrap, .pay-row { display: none !important; }
+      .hanko { opacity: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <article>
+    <div class="r-body">
+
+      <!-- store-->
+      <div class="store-head reveal" id="s0">
+        <span class="jp-title">茶室 紅葉</span>
+        <h1> YUGEN</h1>
+        <p class="store-addr">
+          3-7 Higashiyama, Kyoto-shi 605-0000<br>
+          075-555-0212 &ensp;·&ensp; Tue–Sun 10:00–18:00<br>
+          <span style="font-family:'Noto Serif JP',serif;">月曜定休 </span>
+        </p>
+      </div>
+
+      <div class="r-meta reveal" id="s1">
+        <div class="row"><span>Date</span><span class="v" id="r-date">—</span></div>
+        <div class="row"><span>Order</span><span class="v">#MM-2609</span></div>
+        <div class="row"><span>Table</span><span class="v">7 · Staff: Haruka</span></div>
+        <div class="row">
+          <span>Type</span>
+          <span class="v" style="font-family:'Noto Serif JP',serif;font-size:.88em;">店内飲食 Dine-in</span>
+        </div>
+      </div>
+
+      <!-- items -->
+      <span class="sec-lbl reveal" id="s2">— Order Items · ご注文内容 —</span>
+      <table class="items-tbl reveal" id="s3" aria-label="Order items">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>¥</th>
+          </tr>
+        </thead>
+        <tbody id="items-body"></tbody>
+      </table>
+
+      <hr class="perf reveal" id="s4">
+
+      <!-- total -->
+      <div class="totals reveal" id="s5">
+        <div class="tr">
+          <span class="lbl">Subtotal <span class="jp-sm">小計</span></span>
+          <span id="val-sub">¥0</span>
+        </div>
+       
+        <div class="tr" id="tip-row">
+          <span class="lbl">Gratuity <span class="jp-sm">お心付け</span></span>
+          <span id="val-tip">¥0</span>
+        </div>
+        <div class="tr grand">
+          <span class="lbl">Total <span class="jp-sm" style="font-size:.55em;">合計</span></span>
+          <span id="val-total">¥0</span>
+        </div>
+      </div>
+
+      <hr class="perf reveal" id="s6">
+
+      <!-- TIP -->
+      <div class="tip-wrap reveal" id="s7">
+        <span class="tip-lbl">Gratuity · お心付け</span>
+        <div class="tip-btns">
+          <button class="tip-btn active" onclick="setTip(0,    this)">None</button>
+          <button class="tip-btn"        onclick="setTip(0.05, this)">Smile</button>
+          
+        </div>
+      </div>
+
+      <!-- payment -->
+      <div class="pay-row reveal" id="s8">
+        <label for="pay">
+          Payment <span style="font-family:'Noto Serif JP',serif;font-size:.82em;">支払方法</span>
+        </label>
+        <select id="pay">
+          
+          <option>Credit Card</option>
+          <option>Cash 現金</option>
+          <option>PayPay (QR)</option>
+       
+        </select>
+      </div>
+
+      <hr class="solid reveal" id="s9">
+
+      <!-- HANKO -->
+      <div class="hanko-row reveal" id="s10">
+        <div class="hanko" id="hanko" role="img" aria-label="Paid — 支払済み">
+          支払<br>済み<br><small>PAID</small>
+        </div>
+      </div>
+
+      <hr class="perf reveal" id="s11">
+
+      <!-- thanks -->
+      <div class="thanks reveal" id="s12">
+        <span class="t-jp">ありがとうございました</span>
+        <span class="t-en">Thank you for visiting YUGEN</span>
+        <span class="t-sub">また、いつでもいらっしゃいませ 🍵</span>
+      </div>
+
+      <!-- barcode-->
+      <div class="bc-wrap reveal" id="s13" aria-hidden="true">
+        <div class="bc" id="barcode"></div>
+        <span class="bc-lbl">CC2609 · 1014 · 2026 · MMJI</span>
+      </div>
+
+    </div>
+
+  </article>
+
+  <!-- buttons -->
+  <div class="btn-row">
+    <button class="act-btn" onclick="window.print()">🖨&ensp;Print</button>
+    <button class="act-btn" id="det-btn" onclick="toggleDetail()">▾&ensp;Item detail</button>
+  </div>
+
+  <!-- details -->
+  <div class="det-panel" id="det-panel">
+    <div class="det-inner">
+      <h3>— Item Detail · 品目詳細 —</h3>
+      <div id="det-content"></div>
+    </div>
+  </div>
+
+  <script>
+  const ORDER = [
+  { name:'Ceremonial Matcha',  jp:'抹茶（薄茶）',    qty:2, price:980,
+    desc:'Stone-ground Uji matcha whisked to order · bamboo chasen · seasonal wagashi' },
+  { name:'Gyokuro Cold Brew',  jp:'玉露水出し',       qty:1, price:850,
+    desc:'Shade-grown Yame gyokuro cold-steeped 8 hr · deep umami, no astringency' },
+  { name:'Hojicha Latte',      jp:'ほうじ茶ラテ',     qty:2, price:720,
+    desc:'Roasted houjicha · steamed oat milk · light caramel finish' },
+  { name:'Autumn Wagashi Set', jp:'秋の和菓子セット', qty:2, price:640,
+    desc:'Momiji-manjū · kuri-kinton · mizuyōkan — made fresh this morning' },
+  { name:'Warabi Mochi',       jp:'わらび餅',         qty:1, price:580,
+    desc:'Bracken-starch mochi · kinako · kuromitsu black sugar syrup' },
+];
+
+  let tipRate = 0, detailOpen = false;
+
+  function renderItems() {
+    const tb = document.getElementById('items-body');
+    ORDER.forEach(it => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${it.name}<span class="i-jp">${it.jp}</span></td>
+        <td>${it.qty}</td>
+        <td>¥${(it.qty*it.price).toLocaleString()}</td>`;
+      tb.appendChild(tr);
+    });
+  }
+
+  function calcTotals() {
+    const sub = ORDER.reduce((s, it) => s + it.qty * it.price, 0);
+    const tip = tipRate;
+    document.getElementById('val-sub').textContent   = `¥${sub.toLocaleString()}`;
+    document.getElementById('val-tip').textContent   = tip > 0 ? '😊' : '¥0';
+    document.getElementById('val-total').textContent = `¥${(sub + tip).toLocaleString()}`;
+    document.getElementById('tip-row').style.display = tip > 0 ? 'flex' : 'none';
+  }
+
+  function setTip(amount, btn) {
+    tipRate = amount;
+    document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    calcTotals();
+  }
+
+  function toggleDetail() {
+    detailOpen = !detailOpen;
+    document.getElementById('det-panel').classList.toggle('open', detailOpen);
+    document.getElementById('det-btn').textContent =
+      detailOpen ? '▴\u2002Item detail' : '▾\u2002Item detail';
+    if (detailOpen) {
+      document.getElementById('det-content').innerHTML = ORDER.map(it => `
+  <div class="di">
+    <div><span class="di-name">${it.name}</span><span class="di-jp">${it.jp}</span></div>
+    <div class="di-desc">${it.desc}</div>
+    <div class="di-price">¥${it.price.toLocaleString()} × ${it.qty} = ¥${(it.price*it.qty).toLocaleString()}</div>
+  </div>`).join('');
+    }
+  }
+
+  function renderBarcode() {
+    const el = document.getElementById('barcode');
+    [2,1,3,1,2,3,1,2,1,3,1,2,3,1,1,2,3,1,2,1,3,2,1,1,3,1,2,2,1,3,1,2,1,2].forEach((w,i) => {
+      const b = document.createElement('div');
+      b.style.cssText = `width:${w*1.7}px;height:${i%5===0?'32px':'22px'};background:var(--matcha-d);flex-shrink:0;`;
+      el.appendChild(b);
+      const g = document.createElement('div');
+      g.style.cssText = 'width:2px;flex-shrink:0;';
+      el.appendChild(g);
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('r-date').textContent =
+      new Date().toLocaleDateString('en-JP',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
+    renderItems();
+    calcTotals();
+    renderBarcode();
+    for (let i=0; i<=13; i++)
+      setTimeout(()=>document.getElementById('s'+i)?.classList.add('show'), 100+i*65);
+    setTimeout(()=>document.getElementById('hanko').classList.add('stamped'), 1150);
+  });
+</script>
+</body>
+</html>
